@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-app.get('/', (req, res)=> { res.send('success'); })
+app.get('/', (req, res)=> { res.send('success for 2nd deploy'); })
 
 app.post('/signin', signin.handleSignIn(db, bcrypt) )
 
