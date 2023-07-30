@@ -10,13 +10,23 @@ const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
 const db = knex({
-    client: 'pg',
-    connection: {
-      host : '127.0.0.1',
-      user : 'postgres',
-      password : '',
-      database : 'smart-brain'
-    }
+  client: 'pg',
+  connection: {
+    host: 'dpg-cj2r83tiuie55pi4nml0-a.oregon-postgres.render.com',
+    user: 'smart_brain_hqap_user',
+    password: 'vaGqhqNdahzuOUoZqrojVp1ILDnLgZoF',
+    database: 'smart_brain_hqap',
+  },
+});
+
+// Test the database connection
+db.select('*')
+  .from('users')
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error('Database connection error:', error);
   });
 
 db.select('*').from('users').then(data => { console.log(data) })
