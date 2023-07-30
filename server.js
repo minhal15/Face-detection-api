@@ -36,4 +36,4 @@ app.get('/profile/:id', profile.handleProfile(db) )
 
 app.put('/image', (req, res) => { image.handleImage(req, res, db) } ) // You can add req, res here too but above is advanced functions
 
-app.listen(3000, () => { console.log('app is running on 3000') })
+app.listen(process.env.PORT, () => { console.log(`app is running on ${process.env.PORT}`) })
