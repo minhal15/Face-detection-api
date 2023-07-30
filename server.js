@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
-
+require('dotenv').config();
+const { Pool } = require('pg');
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
@@ -19,22 +20,26 @@ const image = require('./controllers/image');
 //   },
 // });
 
-const db = knex({
-  client: 'pg',
-  connection: process.env.RENDER_DATABASE_URL, // Use the environment variable provided by Render
+const db = new Pool({
+  user: 'smart_brain_hqap_user',
+  password: 'vaGqhqNdahzuOUoZqrojVp1ILDnLgZoF',
+  host: 'dpg-cj2r83tiuie55pi4nml0-a.oregon-postgres.render.com',
+  database: 'smart_brain_hqap',
+  port: 5432,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
-// Test the database connection
-db.select('*')
-  .from('users')
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error('Database connection error:', error);
-  });
+db.connect((err, client, done) => {
+  if (err) {
+    console.error('Database connection error:', err);
+  } else {
+    console.log('Connected to the database!');
+  }
+});
 
-db.select('*').from('users').then(data => { console.log(data) })
+// db.select('*').from('users').then(data => { console.log(data) })
 
 const app = express(); 
 app.use(bodyParser.json());
