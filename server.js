@@ -12,7 +12,7 @@ const image = require('./controllers/image');
 
 const db = knex({
   client: 'pg',
-  connection: process.env.RENDER_DATABASE_URL,
+  connection: process.env.HOST,
 });
 // const db = new Pool({
 //   user: 'smart_brain_hqap_user',
