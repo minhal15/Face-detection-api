@@ -9,14 +9,19 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
+// const db = knex({
+//   client: 'pg',
+//   connection: {
+//     host: 'dpg-cj2r83tiuie55pi4nml0-a.oregon-postgres.render.com',
+//     user: 'smart_brain_hqap_user',
+//     password: 'vaGqhqNdahzuOUoZqrojVp1ILDnLgZoF',
+//     database: 'smart_brain_hqap',
+//   },
+// });
+
 const db = knex({
   client: 'pg',
-  connection: {
-    host: 'dpg-cj2r83tiuie55pi4nml0-a.oregon-postgres.render.com',
-    user: 'smart_brain_hqap_user',
-    password: 'vaGqhqNdahzuOUoZqrojVp1ILDnLgZoF',
-    database: 'smart_brain_hqap',
-  },
+  connection: process.env.RENDER_DATABASE_URL, // Use the environment variable provided by Render
 });
 
 // Test the database connection
