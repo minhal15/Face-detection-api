@@ -10,34 +10,28 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
-// const db = knex({
-//   client: 'pg',
-//   connection: {
-//     host: 'dpg-cj2r83tiuie55pi4nml0-a.oregon-postgres.render.com',
-//     user: 'smart_brain_hqap_user',
-//     password: 'vaGqhqNdahzuOUoZqrojVp1ILDnLgZoF',
-//     database: 'smart_brain_hqap',
+const db = knex({
+  client: 'pg',
+  connection: process.env.RENDER_DATABASE_URL,
+});
+// const db = new Pool({
+//   user: 'smart_brain_hqap_user',
+//   password: 'vaGqhqNdahzuOUoZqrojVp1ILDnLgZoF',
+//   host: 'dpg-cj2r83tiuie55pi4nml0-a.oregon-postgres.render.com',
+//   database: 'smart_brain_hqap',
+//   port: 5432,
+//   ssl: {
+//     rejectUnauthorized: false,
 //   },
 // });
 
-const db = new Pool({
-  user: 'smart_brain_hqap_user',
-  password: 'vaGqhqNdahzuOUoZqrojVp1ILDnLgZoF',
-  host: 'dpg-cj2r83tiuie55pi4nml0-a.oregon-postgres.render.com',
-  database: 'smart_brain_hqap',
-  port: 5432,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
-
-db.connect((err, client, done) => {
-  if (err) {
-    console.error('Database connection error:', err);
-  } else {
-    console.log('Connected to the database!');
-  }
-});
+// db.connect((err, client, done) => {
+//   if (err) {
+//     console.error('Database connection error:', err);
+//   } else {
+//     console.log('Connected to the database!');
+//   }
+// });
 
 // db.select('*').from('users').then(data => { console.log(data) })
 
